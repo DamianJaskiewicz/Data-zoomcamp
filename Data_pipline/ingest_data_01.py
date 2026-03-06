@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# coding: utf-8
+# wersja posprzątanma z nootbook jubpyter teraz jest zrobiona w script 
+
 import click
 import pandas as pd
 from sqlalchemy import create_engine
@@ -55,7 +59,7 @@ def run(pg_user, pg_pass, pg_host, pg_port, pg_db, year, month, target_table, ch
     )
 
     first = True
-    for df_chnk in tqdm(df_iter)
+    for df_chnk in tqdm(df_iter):
         if first:
             df_chnk.head(0).to_sql(
                 name=target_table,
@@ -65,4 +69,3 @@ def run(pg_user, pg_pass, pg_host, pg_port, pg_db, year, month, target_table, ch
 
 if __name__ == '__main__':
     run()
-    
