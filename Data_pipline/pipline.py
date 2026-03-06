@@ -10,3 +10,5 @@ df['day'] = day
 
 df.to_parquet(f"output_day_{sys.argv[1]}.parquet")
 print(df.head())
+print("widze że kod działa całkiem dobrze ")
+# teraz to całkiem dobrze zaczyna działać 
