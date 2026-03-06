@@ -1,5 +1,6 @@
 # podstaoowy obraz dockera 
 FROM python:3.13.11-slim
+RUN pip install --no-cache-dir uv
 RUN pip install pandas pyarrow
 
 # copy uv binary from official iv image (muli stage build pattern)
@@ -13,11 +14,11 @@ ENV PATH="/app/.venv/bin:$PATH"
 #copy dependency file first (better layer cahin ) f
 # copy daje nam miżlowosc podpiąc w danyum miescu pliki czy skrypty jakie sa potrzebned  z 
 # plików lokalnych 
-COPY "pyproject.toml" "uv.lock" ".python-version" ./
+COPY pyproject.toml uv.lock .python-version ./
 
 RUN uv sync --locked
 
-COPY pipline.py pipline.py
+COPY ingest_data_01.py ./
 
-ENTRYPOINT ["python", "pipline.py"]
+ENTRYPOINT ["python", "ingest_data_01.py"]
 
